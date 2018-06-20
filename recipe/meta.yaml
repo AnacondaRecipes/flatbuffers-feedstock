@@ -12,21 +12,20 @@ source:
 
 build:
   number: 0
-  skip: true  # [win and (py27 or py36)]
+  skip: true  # [win and vc<10]
   
-  features:
-    - vc10  # [win and py34]
-    - vc14  # [win and py35]
 
 requirements:
   build:
     - cmake
-    - python  # [win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - make   # [unix]
+  host:
+    # hack: conda-build issue where run_exports from build do not create host env if no other deps are in host.
+    - cmake
 
 test:
-  requires:
-    - python 3.4.*  # [win and py34]
-    - python 3.5.*  # [win and py35]
   commands:
     - test -f $PREFIX/bin/flatc                                                     # [not win]
     - test -f $PREFIX/include/flatbuffers/flatbuffers.h                             # [not win]
