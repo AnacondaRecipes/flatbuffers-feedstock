@@ -11,7 +11,7 @@ source:
   sha256: {{ hash }}
 
 build:
-  number: 1002
+  number: 0
   skip: true  # [win and vc<14]
 
 requirements:
