@@ -30,9 +30,10 @@ test:
 
 about:
   home: http://google.github.io/flatbuffers/
-  license: Apache 2.0
+  license: Apache-2.0
   license_file: LICENSE.txt
-  summary: Memory Efficient Serialization Library
+  dev_url: https://github.com/google/flatbuffers/tree/master/docs/source
+  doc_url: https://github.com/dpgaspar/flask-appbuilder/
 
 extra:
   recipe-maintainers:
