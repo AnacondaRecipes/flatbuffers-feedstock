@@ -14,6 +14,7 @@ cmake ${CMAKE_ARGS} \
   ..
 
 ninja
+ctest
 ninja install
 popd
 
