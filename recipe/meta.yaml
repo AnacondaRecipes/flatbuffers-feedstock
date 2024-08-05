@@ -1,37 +1,41 @@
-{% set version = "2.0.0" %}
-{% set hash = "9ddb9031798f4f8754d00fca2f1a68ecf9d0f83dfac7239af1311e4fd9a565c4" %}
+{% set version = "24.3.25" %}
 
 package:
   name: flatbuffers
   version: {{ version }}
 
 source:
-  fn: flatbuffers-{{ version }}.tar.gz
   url: https://github.com/google/flatbuffers/archive/v{{ version }}.tar.gz
-  sha256: {{ hash }}
+  sha256: 4157c5cacdb59737c5d627e47ac26b140e9ee28b1102f812b36068aab728c1ed
 
 build:
   number: 0
-  skip: true  # [win and vc<14]
+  run_exports:
+    # SO version seems to change every patch version
+    # https://github.com/conda-forge/flatbuffers-feedstock/issues/44
+    - {{ pin_subpackage('flatbuffers', max_pin='x.x.x') }}
 
 requirements:
   build:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - ninja
+    - ninja-base
 
 test:
   commands:
     - test -f $PREFIX/bin/flatc                                                     # [not win]
     - test -f $PREFIX/include/flatbuffers/flatbuffers.h                             # [not win]
+    - test -f $PREFIX/lib/libflatbuffers${SHLIB_EXT}                                # [not win]
     - if not exist %PREFIX%\\Library\\bin\\flatc.exe exit 1                         # [win]
     - if not exist %PREFIX%\\Library\\include\\flatbuffers\\flatbuffers.h exit 1    # [win]
+    # Test that the SO name tracks the patch version
+    - test -f ${PREFIX}/lib/libflatbuffers.so.{{ version }}                         # [linux]
 
 about:
   home: https://google.github.io/flatbuffers/
   license: Apache-2.0
-  license_file: LICENSE.txt
+  license_file: LICENSE
   license_family: Apache
   summary: FlatBuffers is an efficient cross platform serialization library.
   dev_url: https://github.com/google/flatbuffers 
