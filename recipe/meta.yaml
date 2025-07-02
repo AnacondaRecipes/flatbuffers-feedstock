@@ -1,4 +1,4 @@
-{% set version = "24.3.25" %}
+{% set version = "25.2.10" %}
 
 package:
   name: flatbuffers
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/google/flatbuffers/archive/v{{ version }}.tar.gz
-  sha256: 4157c5cacdb59737c5d627e47ac26b140e9ee28b1102f812b36068aab728c1ed
+  sha256: b9c2df49707c57a48fc0923d52b8c73beb72d675f9d44b2211e4569be40a7421
 
 build:
   number: 0
@@ -38,6 +38,13 @@ about:
   license_file: LICENSE
   license_family: Apache
   summary: FlatBuffers is an efficient cross platform serialization library.
+  description: |
+    FlatBuffers is an efficient cross platform serialization library for C++, C#, C, Go, Java, 
+    JavaScript, PHP, Python, and more. It was originally created at Google for game development 
+    and other performance-critical applications. FlatBuffers allows you to directly access 
+    serialized data without parsing/unpacking it first, while still having great forwards/backwards 
+    compatibility. It provides both memory efficiency and speed by allowing direct access to the 
+    serialized data, and supports zero-copy deserialization.
   dev_url: https://github.com/google/flatbuffers 
   doc_url: https://google.github.io/flatbuffers/
 
