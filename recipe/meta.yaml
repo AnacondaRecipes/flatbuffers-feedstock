@@ -18,6 +18,7 @@ build:
 requirements:
   build:
     - cmake
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja-base
@@ -33,7 +34,7 @@ test:
     - test -f ${PREFIX}/lib/libflatbuffers.so.{{ version }}                         # [linux]
 
 about:
-  home: https://google.github.io/flatbuffers/
+  home: https://flatbuffers.dev
   license: Apache-2.0
   license_file: LICENSE
   license_family: Apache
@@ -46,7 +47,7 @@ about:
     compatibility. It provides both memory efficiency and speed by allowing direct access to the 
     serialized data, and supports zero-copy deserialization.
   dev_url: https://github.com/google/flatbuffers 
-  doc_url: https://google.github.io/flatbuffers/
+  doc_url: https://flatbuffers.dev
 
 extra:
   recipe-maintainers:
